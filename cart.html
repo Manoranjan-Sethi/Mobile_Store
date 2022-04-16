@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar {
+            display: flex;
+            padding: 15px;
+            justify-content:space-between;
+            background-color: #186293;
+            cursor: pointer;
+            
+        }
+        #navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+        #cart{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            padding-left: 220px;
+            padding-top: 50px;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+        }
+        button {
+            margin-bottom: 20px;
+            border-radius: 7px; 
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="navbar">
+        <div><a href="cart.html"><h3>Cart</h3></a></div>
+        <div><a href="checkout.html"> <h3>Checkout</h3></a></div>
+        <div><a href="payment.html"><h3>Payment</h3></a></div>
+    </div>
+    <h1>Cart</h1>
+    <p></p>
+    <div id="cart">
+
+    </div>
+</body>
+<script>
+    let cartData = JSON.parse(localStorage.getItem('cartData'));
+    var totalSum = cartData.reduce(function(sum,ele,index,arr){
+        return sum+ Number(ele.price);
+    },0);
+    let totalItems = cartData.length;
+    document.querySelector('p').innerText="You have" + " " + totalItems + " " + "items in your cart and total is " + totalSum ;
+    cartData.forEach((cartItem,cartIndex) => {
+        let box = document.createElement("div");
+
+        let img = document.createElement('img');
+        img.src = cartItem.image_url;
+
+        let name = document.createElement('p')
+        name.textContent =cartItem.name;
+
+        let rating = document.createElement('p')
+        rating.textContent = cartItem.rating;
+
+        let price = document.createElement('p')
+        price.textContent = cartItem.price;
+
+        let cartButton = document.createElement('button');
+        cartButton.innerText = "Remove from cart";
+
+        cartButton.addEventListener('click', function(){
+            cartData.splice(cartIndex,1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            window.location.reload();
+            
+        })
+
+        box.append(img, name, rating, price, cartButton);
+
+        document.querySelector("#cart").append(box);
+    });
+</script>
+</html>
