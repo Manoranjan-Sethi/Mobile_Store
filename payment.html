@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar {
+            display: flex;
+            padding: 15px;
+            justify-content:space-between;
+            background-color: #186293;
+            cursor: pointer;
+            
+        }
+        #navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+        }
+        button {
+            margin-bottom: 20px;
+            border-radius: 7px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="cart.html"><h3>Cart</h3></a></div>
+        <div><a href="checkout.html"> <h3>Checkout</h3></a></div>
+        <div><a href="payment.html"><h3>Payment</h3></a></div>
+    </div>
+    <h1>Payment</h1>
+    <h2>Enter Payment Details</h2>
+    <div>
+        <form action="">
+            <input type="text" placeholder="Card Holder Name">
+            <input type="number" placeholder="Enter Your Card Number">
+            <input type="number" placeholder="CVV">
+            <input type="number" placeholder="Enter OTP">
+            <input type="submit" placeholder="Place Order">
+        </form>
+    </div>
+</body>
+<script>
+    document.querySelector('form').addEventListener('sumbit',function() {
+        alert("Payment Successful");
+    });
+</script>
+</html>
